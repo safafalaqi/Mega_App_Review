@@ -6,7 +6,6 @@ import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.megaapp.HomeFragment
 import com.example.megaapp.R
@@ -14,9 +13,6 @@ import com.example.megaapp.databinding.ItemRowBinding
 import com.example.megaapp.model.User
 import kotlinx.android.synthetic.main.delete_dialog.*
 import kotlinx.android.synthetic.main.edit_dialog.*
-import kotlinx.android.synthetic.main.edit_dialog.btCloseUpdate
-import kotlinx.android.synthetic.main.edit_dialog.btUpdateDialog
-import kotlinx.android.synthetic.main.item_row.*
 
 class RVAdapter(val fragment: HomeFragment): RecyclerView.Adapter<RVAdapter.ItemViewHolder>() {
     class ItemViewHolder(val binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root)
@@ -95,6 +91,12 @@ class RVAdapter(val fragment: HomeFragment): RecyclerView.Adapter<RVAdapter.Item
 
         myInfoDialog.btDeleteDialog.setOnClickListener {
             fragment.deleteFromBoth(users[position])
+            Toast.makeText(
+                fragment.requireContext(),
+                "Deleted successfully!!",
+                Toast.LENGTH_SHORT
+            ).show()
+            myInfoDialog.dismiss()
         }
 
         myInfoDialog.btCloseDelete.setOnClickListener{
